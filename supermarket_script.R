@@ -1,6 +1,6 @@
 library(tidyverse)
 library(ggplot2)
-
+library(dplyr)
 supermarket<-read.csv("supermarket_sales.csv",header=TRUE)
 
 #supermarket$City
@@ -15,7 +15,7 @@ ggplot(data=supermarket,aes(x=City,fill=Customer.type))+
 ggplot(data=supermarket,aes(x=Customer.type,fill=Gender))+
   geom_bar(position = "dodge")
 
-
+#plot yang sudah pake member vs normal per jumlah total belanjaan
 ggplot(data=supermarket,aes(x=Total,fill=Customer.type))+
   geom_histogram(binwidth = 100)
 
@@ -34,3 +34,10 @@ g+geom_col(stat_sum(),position=position_dodge())
 #xx<-diamonds
 #summary(supermarket)
 
+ggg<-filter(supermarket,City=="Mandalay")
+ggplot(data=ggg,aes(x=Total,fill=Customer.type))+
+  geom_histogram(binwidth = 100)
+
+ggg<-filter(supermarket,City=="Yangon")
+ggplot(data=ggg,aes(x=Customer.type,fill=Gender))+
+  geom_bar(position="dodge")
